@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>valeyou</title>
+      <meta charset="UTF-8">
+      <meta name="description" content="">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="icon" href="../Valeyou/images/Valeyou_logo.png">
+      <!-- Core Stylesheet -->  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- Core Stylesheet -->
+      <link rel="stylesheet" href="../Valeyou/css/fontawesome.min.css">
+     
+      <!-- bootstarp 4 cdn -->
+      <link rel="stylesheet" href="../Valeyou/css/bootstrap.css">
+      <!-- Responsive Stylesheet -->
+      <link rel="stylesheet" href="../Valeyou/css/responsive.css">
+
+          <link rel="stylesheet" href="../Valeyou/css/style.css">
+     
+   </head>
+
+   <body>
+      
+      <div class="container pt-90">
+         <div class="row">
+            
+            <div class="col-lg-12 logo">
+               <div class="logo text-center" >
+                   
+               <img src="../Valeyou/images/Valeyou_logo1.png"></div>
+
+               <div class="content div pt-60 col-lg-10 offset-lg-1">
+                  <div class="row">
+                  <div class="col-lg-2 hero">
+                        <img src="<%=(response.image) ? '/upload/'+response.image : '../Valeyou/images/hero-img1.png'%>">
+                  </div>
+              <div class="col-lg-6 offset-lg-4">
+                  <div class="hero-text">
+                        <h2><%= response.name %></h2>
+                        <p><%= response.description %></p>
+                  </div>
+                     <div class="hero-info">
+                     <h2>General Info</h2>
+                           <ul>
+                           <li><span>First Name </span><%= response.firstName %> </li>
+                           <li><span>Last  Name </span><%= response.lastName %> </li>
+                           <li><span>E-mail</span><%= response.email %></li>
+                           <li class="rating"><span>Rating</span><%= response.average_rating %><i class="fa fa-star" aria-hidden="true"></i>
+                              
+                           <li><span>State</span><%= response.state %></li>
+                           <li><span>City</span><%= response.city %></li>
+                           <li><span>Zipcode</span><%= response.zipCode %></li>
+                           <li><span>Address</span><%= response.address %></li>
+                           <li><span>Total Jobs </span><%= response.totalprovidedservices %></li>
+                           </ul>
+                      </div>
+                       <div class="hero-info">
+                     <h2>Provider Services </h2>
+                     <% if(response.providerCategories.length > 0) { 
+                          for(var i in response.providerCategories){ %>
+                     <h3><%=(response.providerCategories[i].category) ? response.providerCategories[i].category.name : 'N/A' %></h3>
+                           <ul class="lify">
+                               <% if (response.providerCategories[i].subCategories.length > 0) {
+                                   for(var j in response.providerCategories[i].subCategories) { %>
+                                         <li class="cat"><span class="men"><%=(response.providerCategories[i].subCategories[j].subCategory) ? response.providerCategories[i].subCategories[j].subCategory.name : 'N/A'%> </span>     :  <span><%=(response.providerCategories[i].subCategories[j]) ?'$'+ response.providerCategories[i].subCategories[j].price : 'N/A'%></span></li>
+                              <% }  } else { %>
+                                <li class="cat"><span class="men">N/A </span>     :  <span>N/A</span></li>
+                                <% } %>
+
+                          
+                        </ul>
+                        <% } } else { %>
+                            <h3>N/A %></h3>
+                            <%  }%>
+
+                      </div>
+                  </div>
+               </div>
+            </div>
+            <div class="container pt-40 pb-40">
+               <div class="row">
+                 <div class="col-lg-2 offset-lg-4 google"><a href="https://play.google.com/store/apps?hl=en_IN" target="_BLANK"><img src="../Valeyou/images/google1.png"></a></div>
+                   <div class="col-lg-2 google"><a href="https://www.apple.com/ios/app-store/" target="_BLANK"><img src="../Valeyou/images/apple1.png"></a></div>
+                </div>
+            </div>
+         </div>
+   </body>

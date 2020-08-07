@@ -1,0 +1,123 @@
+ <% include ../header.ejs %>
+ <% include ../navbar.ejs %>
+  <% include ../sidebar.ejs %>
+
+  <div class="content-body">
+   <%if(msg!=''){%>
+    
+             <div class="alert alert-success col-xs-6" id="flash_msg_dashboard" style="float: right;width: 27%;margin: -79px 5px 1px;z-index: 99999999999999999999 !important;  "><h5><%= msg%></h5></div>
+  <%} %>
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Notifications</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+           <div class="container-fluid">
+                <div class="row">
+							  <div class="col-12">
+						        <div class="card">
+								<form method ="post" action ="/save_notiifcation" enctype="multipart/form-data">
+
+									<div class="form-group" style="
+									padding: 14px 3px 3px 18px;
+									margin: 0 19px 1px 1px;">
+											<label><b>Select User Type</b></label>
+											<select  id="user_type"  name="type" class="form-control" required>
+												<option value="" selected> Select Type </option>
+                                               <option value="1" >Users</option>
+											
+												<option  value="2" >Provider</option>
+												
+											</select>
+										<div class="form-group">
+												<label><b>Select </b></label>
+												<select  multiple="multiple"  id="error-type" multiple  name="users_type" class="form-control select" required>
+													
+												   <option value="">Select</option>
+												
+												</select>
+											</div>
+										
+										<input type="hidden"  name="id" value="">
+
+										<div class="form-group">
+											<label><b>Message</b>:</label>
+											<textarea rows ="4" cols="5" name="description" class="form-control" placeholder="Enter Message" required ></textarea> 
+										</div>
+
+
+									
+										<div class="text-left">
+											<button type="submit"  class="btn btn-primary">Send </button>
+											<a href="/admin/dashboard" class="btn btn-danger">Back </a>
+										</div>
+						</div>
+					</form>
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
+					<br>
+
+
+						<% include ../footer.ejs %>
+						<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>		
+						<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css">
+						
+						<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+ 
+						<script>
+						  $(document).ready(function(){
+							  $("#user_type").change(function(){
+							  let id= $(this).val();
+							  //alert(id);
+							if(id ==1){
+								$.ajax({
+									type:"POST",
+									data:{ids:id},
+									url:"/get_users",
+									success:function(data){
+										
+									if(data && data!=''){
+										let test= '';
+										for(let i=0;i<data.length;i++){
+										test += '<option value='+data[i].id+'>'+data[i].firstName+ ' ' +data[i].lastName+ '</option>';
+										}
+										$('#error-type').html(test);
+										}
+									}
+								});
+							}else if (id==2){
+								
+								$.ajax({
+									type:"POST",
+									data:{ids:id},
+									url:"/get_business",
+									success:function(data){
+									if(data&& data!=''){
+										let test= '';
+										for(let i=0;i<data.length;i++){
+										test += '<option value='+data[i].id+'>'+data[i].firstName+ ' ' +data[i].lastName+ '</option>';
+										}
+										$('#error-type').html(test);
+										}
+									}
+								});
+							}else{
+								$('#error-type').empty()
+							}
+								
+							  });
+							  
+						  });
+
+						  $('#error-type').select2();
+						</script>
+						
+					

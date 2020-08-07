@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vale-You</title>
+    <!-- Favicon icon -->
+    <!-- <link rel="icon" type="" sizes="16x16" href="/fav.png"> -->
+    <link rel="icon" href="http://3.17.254.50:3050/upload/Valeyou_logo.png" type="image/gif" sizes="16x16">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
+    <link href="../heart/css/style.css" rel="stylesheet">
+    <style>
+    .login-form-bg .card {
+    background-color: rgba(255,255,255,.3) !important;
+}
+.login-form__btn.submit {
+    padding: 15px 40px;
+    background: #4AC1EE;
+    font-weight: 700;
+}
+.login-input .form-group .form-control {
+   
+    border-bottom: 1px solid #4AC1EE !important;
+    color: #4AC1EE;
+    background:#fff
+}
+a {
+    transition: all 0.4s cubic-bezier(0.4, 0, 1, 1);
+    color: #fff;
+}
+
+
+    </style>
+</head>
+
+<body class="h-100" background="./bk.jpg" style="background-size: cover;">
+    
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-4">
+
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            <div class="card-body pt-5">
+                                 <CENTER><img src="Valeyou_logo.png"width="130"></CENTER>
+                                 
+                                <!-- <a class="text-center" href=""> <h4>Honey Do</h4></a> -->
+
+
+                                 <%if(msg!=''){%>
+                                    <div class="alert alert-success col-xs-6" id="flash_msg_dashboard" style="z-index: 999999;float: right;width: 96%;margin: 0px 4px 2px 2px;"><h5><center><%= msg%></center></h5></div>
+                                <%} %>
+        
+                                <form class="mt-5 mb-5 login-input" method="post" action="/admin/login">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="Email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                                    </div>
+                                   
+                                    <button class="btn login-form__btn submit w-100">Login</button>
+                                </form>
+                                <div class="text-center">
+                                    <a href="/forgot_password">Forgot password?</a>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+ <script type="text/javascript">
+      setTimeout(() => {
+         $("#flash_msg_dashboard").fadeOut('slow');
+       },3000);
+</script>
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="../heart/plugins/common/common.min.js"></script>
+    <script src="../heart/js/custom.min.js"></script>
+    <script src="../heart/js/settings.js"></script>
+    <script src="../heart/js/gleek.js"></script>
+    <script src="../heart/js/styleSwitcher.js"></script>
+</body>
+</html>
+
+
+
+
+

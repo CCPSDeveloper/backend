@@ -1,0 +1,92 @@
+  <% include ../header.ejs %>
+  <% include ../navbar.ejs %>
+  <% include ../sidebar.ejs %>
+
+  <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="/admin/withdrawal">Back</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+                <div class="row">
+
+ <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Payment View</h4>
+                                <div class="table-responsive">
+                                    <table class="table header-border">
+                                       
+                                        <tbody>
+                                            <tr>
+                                                <th>User FirstName</th>
+                                                <td><%=response[0].user.firstName%></td>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <th>User LastName</th>
+                                                <td><%=response[0].user.lastName%></td>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <th>Provider FirstName</th>
+                                                <td><%=response[0].provider.firstName%></td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th>Provider LastName</th>
+                                                <td><%=response[0].provider.lastName%></td>
+                                               
+                                            </tr>
+
+                                            <tr>
+                                                <th>Provider Phone</th>
+                                                <td><%=response[0].provider.phone%></td>
+                                              
+                                            </tr>
+                                            <tr>
+                                                <th>Category</th>
+                                               
+                                                <td><%=response[0].order.category.name%></td>
+                                                
+                                            </tr>
+
+                                            <tr>
+                                                <th>Amount</th>
+                                               
+                                                <td><%=response[0].amount%></td>
+                                                
+                                            </tr>
+
+                                            <tr>
+                                                <th>Provider Earning</th>
+                                               
+                                                <td><%=response[0].providerEarning%></td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th>Admin Earning</th>
+                                               
+                                                <td><%=response[0].adminCommission%></td>
+                                                
+                                            </tr>
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% include ../footer.ejs %>

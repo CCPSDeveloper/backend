@@ -1,0 +1,123 @@
+  <% include ../header.ejs %>
+  <% include ../navbar.ejs %>
+  <% include ../sidebar.ejs %>
+
+  <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="/admin/provider">Back</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+                <div class="row">
+
+ <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Provider View</h4>
+                                <div class="table-responsive">
+                                    <table class="table header-border">
+                                       
+                                        <tbody>
+                                            <tr>
+                                                <th>Name</th>
+                                                <td><%=response.firstName + ' ' + response.lastName%></td>
+                                                  <th>Email</th>
+                                                <td><%=response.email%></td>
+                                               
+                                            </tr>
+                                          
+                                    
+                                            <tr>
+                                                <th>Image</th>
+                                               
+                                                <td>
+                                                    <a href="<%= '/upload/'+response.image%>"  target="_BLANK">
+                                                    <img src="<%= '/upload/'+response.image%>" class="img-rounded" alt="image" value="" width="80" height="80"></a>
+                                                </td>
+
+                                                <th>Business Licence</th>
+                                               
+                                                <td>
+                                                    <a href="<%= '/upload/'+response.businessLicence%>" target="_BLANK">
+                                                    <img src="<%= '/upload/'+response.businessLicence %>" class="img-rounded" alt="image" value="" width="80" height="80"></a>
+                                                </td>
+                                                
+                                            </tr>
+
+                                            
+
+                                            <tr>
+                                                <th>Insurance</th>
+                                               
+                                                <td>
+                                                    <a href="<%= '/upload/'+response.insurance%>" target="_BLANK"><img src="<%= '/upload/'+response.insurance%>" class="img-rounded" alt="image" value="" width="80" height="80"></a></td>
+
+                                                 <th>Resume</th>
+                                               
+                                                <td>
+                                                    <%
+                                                        if(response.resume) {
+                                                        var ext = response.resume.split('.').pop(); 
+                                                        if(ext=='pdf'){
+                                                        %>
+                                                      <a href="<%= '/upload/'+response.resume%>"  target="_BLANK">  <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg" height="80" ></a>
+                                                        <% }else if(ext=='doc' || ext=='docx') { %>
+                                                            <a href="<%= '/upload/'+response.resume%>"  target="_BLANK"> <img src="https://cdn1.iconfinder.com/data/icons/file-formats-7/502/Untitled-9-512.png" height="80"></a>
+                                                    <% } }%>
+                                                </td>
+                                                
+                                            </tr>
+
+
+                            
+                                            <tr>
+                                                <th>Status</th>
+                                                <td><%=(response.status == 1) ? 'Active' : 'Inactive' %></td>
+                                               
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+
+                                   <hr>
+                                   <h2> Provider Categories </h2>
+                                   <hr>
+                                    <% 
+                                    var ok =1;
+                                    if(response.providerCategories.length > 0) {
+                                    for( var i in response.providerCategories ) { %>
+                                       
+                                        <ol>
+                                            <li style="color: #0a1744;font-size: 21px;font-weight: 800;"><span><b><%= ok;%> : </b></span><%=(response.providerCategories[i].category) ? response.providerCategories[i].category.name : 'N/A'%></li>
+                                       <% if( response.providerCategories[i].subCategory.length > 0) {
+                                       for(var j in response.providerCategories[i].subCategory){ %>
+                                        <div style="padding: 4px 3px 2px 33px;color: #4ac1ee;">
+                                            <ul>
+                                               <li>- <span><b>Subcategory :</b> </span><%=(response.providerCategories[i].subCategory[j].subCategory.name) ? response.providerCategories[i].subCategory[j].subCategory.name : 'N/A' %></li>
+                                               <li>- <span><b>Price :</b> </span>$<%=response.providerCategories[i].subCategory[j].price %></li>
+                                            </ul>
+                                           </div> 
+                                            <% } } %>
+                                        </ol>
+                                       
+                                        
+                                        <% ok ++; }  } else {  %>
+
+                                            <span> Category Not Available</span>
+                                            <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% include ../footer.ejs %>

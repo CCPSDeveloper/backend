@@ -1,0 +1,71 @@
+<% include ../header.ejs %>
+ <% include ../navbar.ejs %>
+  <% include ../sidebar.ejs %>
+
+
+ <div class="content-body">
+   <%if(msg!=''){%>
+    
+             <div class="alert alert-success col-xs-6" id="flash_msg_dashboard" style="float: right;width: 27%;margin: -79px 5px 1px;z-index: 99999999999999999999 !important;  "><h5><%= msg%></h5></div>
+  <%} %>
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Admin</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Admin Table</h4>
+                                    <table class="table table-striped table-bordered zero-configuration">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>email</th>
+                                                <th>logo</th>
+                                                <th>Image</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                              <%
+                  if(response && response.length > 0){
+
+                  for( var i in response){%>
+                                            <tr>
+                                                <td><%=parseInt(i)+1%></td>
+                                      <td><%=response[i].name%></td>
+                                      <td><%=response[i].email%></td>
+                                       <td><img src="/upload/<%=response[i].logo %>" height="50"></td>
+                                        <td><img src="/upload/<%=response[i].image %>" height="50"></td>
+                                               <td class="text-center btns_3">
+                                        
+                                                    <a style="color:#666;"  href="/admin/edit?id=<%=response[i].id%>"><i class="fa fa-pencil color-muted m-r-5" title="Edit" style="font-size: 20px;"></i> </a>
+                                                   
+                                                
+                                            
+                                    </td>
+                                            </tr>
+
+                                            <% } } %>
+                                           
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+
+            <% include  ../footer.ejs %>

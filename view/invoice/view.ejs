@@ -1,0 +1,189 @@
+<% include ../header.ejs %>
+<% include ../navbar.ejs %>
+<% include ../sidebar.ejs %>
+<style type="text/css">
+  .tble_set .col-md-6 {
+    border: 1px solid #ddd;
+    padding: 20px;
+  }
+
+  .tble_set .table td,
+  .table th {
+    border-color: #f3f3f3;
+    width: 50%;
+  }
+</style>
+
+<div class="content-body">
+
+  <div class="row page-titles mx-0">
+    <div class="col p-md-0">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active"><a href="/admin/invoice">Back</a></li>
+      </ol>
+    </div>
+  </div>
+  <!-- row -->
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-lg-12">
+        <h4 class="card-title">Invoice View</h4>
+        <div class="card">
+          <div class="card-body">
+
+            <div class="table-responsive tble_set">
+              <div class="row">
+
+                <div class="col-md-6">
+                  <h5 class="card-title">Order Details</h5>
+                  <table class="table header-border">
+                    <tbody>
+                      <tr>
+                        <th>OrderId </th>
+                        <td><a href ="/admin/complete-order-view?id=<%=response.order.id%>" style="color: blue;">#<%=response.order.id%></a></td>
+                      </tr>
+                      <tr>
+                        <th>Order Description</th>
+                        <td><%=response.order.description%></td>
+                      </tr>
+                      <tr>
+                        <th>Date</th>
+                        <%
+                        var myDate =new Date(response.order.date*1000);
+                        %>
+                        <td><%=myDate.toLocaleString();%></td>
+                    </tr>
+                    <tr>
+                      <th>Location</th>
+                      <td><%=response.order.location%></td>
+                    </tr>
+                      <tr>
+                        <th>Order Status</th>
+                        <td><% if(response.dataValues.order.status == 0) { %> <span>Pending</span>
+                          <% } if(response.dataValues.order.status == 1) { %><span>Accepted</span>
+                          <% } if(response.dataValues.order.status == 2) { %><span>Decline</span>
+                          <% } if(response.dataValues.order.status == 3) { %><span>Progress</span>
+                          <% } if(response.dataValues.order.status == 4) { %><span>Complete</span> <% }  %></td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-md-6">
+                  <h5 class="card-title">Invoice Details</h5>
+                  <table class="table header-border">
+                    <tbody>
+
+                      <tr>
+                        <th>OrderId</th>
+                        <td>#<%=response.dataValues.orderId%></td>
+
+                      </tr>
+                     
+                      <tr>
+                        <th>Payment Method</th>
+                        <td><%=(response.dataValues.type == 0)? 'paypal' : 'Card'%></td>
+
+                      </tr>
+                      <tr>
+                        <th>Total Amount</th>
+                        <td>$ <%=response.dataValues.amount%></td>
+
+                      </tr>
+
+                      <tr>
+                        <th>Admin Fees</th>
+                        <td>$ <%=response.dataValues.adminFees%></td>
+
+                      </tr>
+
+                      <tr>
+                        <th>Final Amount</th>
+                        <td>$ <%= response.dataValues.amount - response.dataValues.adminFees%></td>
+
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <h5 class="card-title">Provider Details</h5>
+                  <table class="table header-border">
+                    <tbody>
+
+                      <tr>
+                        <th>Name</th>
+                        <td><%=response.dataValues.provider.firstName + ' ' + response.dataValues.provider.lastName  %></td>
+
+                      </tr>
+                      <tr>
+                        <th>Email</th>
+                        <td><%=response.dataValues.provider.email%></td>
+
+                      </tr>
+
+                      <tr>
+                        <th>Phone</th>
+                        <td><%=response.dataValues.provider.phone%></td>
+
+                      </tr>
+
+                      <tr>
+                        <th>Image</th>
+
+                        <td><img src="<%=(response.dataValues.provider.image) ?  '/upload/'+response.dataValues.provider.image : '/upload/bag.jpg'%>" class="img-rounded"
+                            alt="image" value="" width="80" height="80"></td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+
+
+                <div class="col-md-6">
+                  <h5 class="card-title">User Details</h5>
+                  <table class="table header-border">
+
+                    <tbody>
+
+                      <tr>
+                        <th>Name</th>
+                        <td><%=response.dataValues.user.name%></td>
+
+                      </tr>
+                      <tr>
+                        <th>Email</th>
+                        <td><%=response.dataValues.user.email%></td>
+
+                      </tr>
+                      <tr>
+                        <th>Image</th>
+
+                        <td><img src="<%=(response.dataValues.user.image) ? '/upload/'+response.dataValues.user.image : '/upload/bag.jpg' %>" class="img-rounded" alt="image"
+                            value="" width="80" height="80"></td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include ../footer.ejs %>

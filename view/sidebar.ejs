@@ -1,0 +1,189 @@
+<style>
+    .nk-sidebar .metismenu>li.active>a {
+      background: #4AC1EE;
+      color: #464a53;
+    }
+  
+    .btn-outline-primary {
+      color: #4AC1EE;
+      background-color: transparent;
+      background-image: none;
+      border-color: #4AC1EE;
+    }
+  
+    .btn-outline-primary:hover {
+      background: #4AC1EE;
+      color: #fff;
+      border-color: #4AC1EE;
+    }
+  
+    .btn-primary {
+      color: #fff;
+      background-color: #4AC1EE;
+      border-color: #4AC1EE;
+    }
+  
+    .page-item.active .page-link {
+      z-index: 1;
+      color: #fff;
+      background-color: #4AC1EE;
+      border-color: #4AC1EE;
+    }
+  
+    .page-link {
+  
+      color: #4AC1EE;
+      background-color: #fff;
+      border: 1px solid #dee2e6;
+    }
+  
+    .page-link:hover {
+      z-index: 2;
+      color: #4AC1EE;
+      text-decoration: none;
+      background-color: #e9ecef;
+      border-color: #dee2e6;
+    }
+  
+    .btn-primary:active,
+    .btn-primary:focus,
+    .btn-primary:hover {
+      background: #4AC1EE;
+      color: #fff;
+      border-color: #4AC1EE;
+    }
+    .btn-outline-primary {
+    
+      border-color: #4AC1EE;
+  }
+  .nk-sidebar .metismenu > li:hover i, .nk-sidebar .metismenu > li:focus i, .nk-sidebar .metismenu > li.active i {
+      color: #fff !important;
+  }
+  .nk-sidebar .metismenu > li:hover span, .nk-sidebar .metismenu > li:focus span, .nk-sidebar .metismenu > li.active span {
+  
+      color: #fff;
+  }
+  .nk-sidebar .metismenu > li:hover > a {
+      background: #4AC1EE !important;
+      color: #4AC1EE;
+  }
+  </style>
+  
+  <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                  
+                    <li class="<% if(title =='dashboard') { %> active <%}%>">
+                        <a  href="/admin/dashboard" aria-expanded="false">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                        </a>
+                        
+                    </li>
+
+
+                    <li class="<% if(title =='user') { %> active <%}%>">
+                        <a  href="/admin/users" aria-expanded="false">
+                            <i class="ti-user"></i><span class="nav-text">Users</span>
+                        </a>
+                        
+                    </li>
+
+                    <li class="<% if(title =='category') { %> active <%}%>">
+                        <a  href="/admin/category" aria-expanded="false">
+                            <i class="ti-menu"></i><span class="nav-text">Categories</span>
+                        </a>
+                        
+                    </li>
+                    <li class="<% if(title =='subategory') { %> active <%}%>">
+                        <a  href="/admin/subcategory" aria-expanded="false">
+                            <i class="ti-menu"></i><span class="nav-text">SubCategories</span>
+                        </a>
+                        
+                    </li>
+
+
+                     <li class="<% if(title =='provider') { %> active <%}%>">
+                        <a  href="/admin/provider" aria-expanded="false">
+                            <i class="ti-paragraph"></i><span class="nav-text">Provider</span>
+                        </a>
+                        
+                    </li>
+
+                    <!-- <li class="<% if(title =='request') { %> active <%}%>">
+                        <a  href="/admin/provider-request" aria-expanded="false">
+                            <i class="ti-bell"></i><span class="nav-text">Provider-Request</span>
+                        </a>
+                        
+                    </li> -->
+
+                     <li class="<% if(title =='order') { %> active <%}%>">
+                        <a  href="/admin/orders" aria-expanded="false">
+                            <i class="ti-shopping-cart-full"></i><span class="nav-text">Orders</span>
+                        </a>
+                        
+                    </li>
+
+                     <li class="<% if(title =='complete-order') { %> active <%}%>">
+                        <a  href="/admin/complete-orders" aria-expanded="false">
+                            <i class="ti-face-smile"></i><span class="nav-text">Complete-Order</span>
+                        </a>
+                        
+                    </li>
+
+                     <li class="<% if(title =='invoice') { %> active <%}%>">
+                        <a  href="/admin/invoice" aria-expanded="false">
+                            <i class="ti-money"></i><span class="nav-text">Invoice</span>
+                        </a>
+                        
+                    </li>
+
+                     <li class="<% if(title =='notification') { %> active <%}%>">
+                        <a  href="/admin/notification" aria-expanded="false">
+                            <i class="ti-bell"></i><span class="nav-text">Notification</span>
+                        </a>
+                        
+                    </li>
+                       <li class="<% if(title =='faqs') { %> active <%}%>">
+                        <a  href="/admin/faqs" aria-expanded="false">
+                            <i class="ti-cloud-down"></i><span class="nav-text">FAQ</span>
+                        </a>
+                        
+                    </li>
+                    <!-- <li class="<% if(title =='tip') { %> active <%}%>">
+                        <a  href="/admin/tip" aria-expanded="false">
+                            <i class="ti-money"></i><span class="nav-text">Add Tips</span>
+                        </a>
+                        
+                    </li> -->
+
+                      <!-- <li class="<% if(title =='withdrawal') { %> active <%}%>">
+                        <a  href="/admin/withdrawal" aria-expanded="false">
+                            <i class="ti-cloud-down"></i><span class="nav-text">Payment</span>
+                        </a>
+                        
+                    </li> -->
+
+                     <li class="<% if(title =='content') { %> active <%}%>">
+                        <a  href="/admin/content" aria-expanded="false">
+                            <i class="ti-text"></i><span class="nav-text">Pages</span>
+                        </a>
+                        
+                    </li>
+
+                     <li class="<% if(title =='setting') { %> active <%}%>">
+                        <a  href="/admin/setup" aria-expanded="false">
+                            <i class="ti-bell"></i><span class="nav-text">Setting</span>
+                        </a>
+                        
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->

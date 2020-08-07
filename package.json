@@ -1,0 +1,35 @@
+{
+  "name": "omniserve",
+  "version": "1.0.0",
+  "description": "",
+  "main": "omniserve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apn": "^2.2.0",
+    "connect-flash": "^0.1.1",
+    "crypto": "^1.0.1",
+    "dateformat": "^3.0.3",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.5",
+    "express-session": "^1.17.0",
+    "fcm-node": "^1.5.2",
+    "http-server": "^0.12.3",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.1.0",
+    "nodemailer": "^6.3.0",
+    "nodemon": "^1.19.1",
+    "path": "^0.12.7",
+    "paypal-rest-sdk": "^1.8.1",
+    "sequelize": "^5.10.1",
+    "sequelize-cli": "^5.5.0",
+    "socket.io": "^2.2.0",
+    "stripe": "^8.19.0",
+    "swagger-ui-express": "^4.1.4",
+    "twilio": "^3.39.1"
+  }
+}

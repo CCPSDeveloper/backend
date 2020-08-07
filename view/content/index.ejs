@@ -1,0 +1,52 @@
+<% include ../header.ejs %>
+ <% include ../navbar.ejs %>
+  <% include ../sidebar.ejs %>
+
+
+ <div class="content-body">
+   <%if(msg!=''){%>
+    
+             <div class="alert alert-success col-xs-6" id="flash_msg_dashboard" style="float: right;width: 27%;margin: -79px 5px 1px;z-index: 99999999999999999999 !important;  "><h5><%= msg%></h5></div>
+  <%} %>
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="/admin/content">Content</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+           <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-12">
+                          <form method="post" action="/admin/content-edit">
+                        <div class="card">
+                        <div class="card-body">
+                            <h5 class="box-title">Term And Condition</h5>
+                                <textarea class="summernote" name="term"><%= response.dataValues.term%></textarea>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="box-title">Privacy</h5>
+                                <textarea class="summernote" name="privacy"><%= response.dataValues.privacy%></textarea>
+                        </div>
+ 
+                        </div>
+                
+                        <div class="card">
+                            <div class="card-body">
+                              
+                                <button id="save" class="btn btn-success btn-rounded"  type="submit">Update</button>
+                            </div>
+                        </div>
+                          </form>
+                    </div>
+              
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+
+            <% include  ../footer.ejs %>

@@ -1,0 +1,143 @@
+  <% include ../header.ejs %>
+    <% include ../navbar.ejs %>
+  <% include ../sidebar.ejs %>
+
+  <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="/admin/provider">Back</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+
+                        <div class="card">
+
+                            <div class="card-body">
+                                     <h4 class="card-title">Provider Edit</h4>
+                                <div class="form-validation">
+                                    <form class="form-valide" action="/admin/provider_edit" method="post" enctype="multipart/form-data">
+
+
+                                         <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-providername">Categories <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                               <select class="form-control" name="category_id">
+                                                   <option value="<%=response.dataValues.categoryId%>"><%=response.dataValues.category.name%></option>
+                                                   <%   for( var i in cate){ %>
+                                                   <option value="<%=cate[i].id %>"><%=cate[i].name %></option>
+
+                                                   <% } %>
+                                               </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Name <span class="text-danger">*</span>
+                                            </label>
+
+                                            <input type="hidden" name="id" value="<%=response.dataValues.id%>">
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-username" name="name" placeholder="Enter a Name.." value="<%=response.dataValues.name%>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="val-email" name="email" placeholder="Your valid email.." value="<%=response.dataValues.email%>">
+                                            </div>
+                                        </div>
+
+
+                                         <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-email">Phone <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="number" class="form-control" id="val-email" name="phone"  value="<%=response.dataValues.phone%>">
+                                            </div>
+                                        </div>
+                                      
+                                      
+                                    
+                                     
+                                       <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-suggestions">Image <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type ="file" class="form-control" name="image" onchange="previewImage(event)" >
+
+
+                                            </div>
+                                             <img src="<%='/upload/' + response.dataValues.image%>" height="50" id="image_view">
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-suggestions">Licence <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type ="file" class="form-control" name="business_licence" onchange="previewImageLicence(event)" >
+
+
+                                            </div>
+                                             <img src="<%='/upload/' + response.dataValues.businessLicence%>" height="50" id="image_view_Licence">
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-suggestions">Insurance <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type ="file" class="form-control" name="insurance" onchange="previewImageInsurance(event)" >
+
+
+                                            </div>
+                                             <img src="<%='/upload/' + response.dataValues.insurance%>" height="50" id="image_view_Insurance">
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-suggestions">Resume <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type ="file" class="form-control" name="resume" onchange="previewImageResume(event)" >
+
+
+                                            </div>
+                                             <img src="<%='/upload/' + response.dataValues.resume%>" height="50" id="image_view_resume">
+                                        </div>
+
+                                      
+                                      
+                                     
+                                        <div class="form-group row">
+                                            <div class="col-lg-8 ml-auto">
+                                                <button type="submit" class="btn btn-primary">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+          <% include ../footer.ejs %>

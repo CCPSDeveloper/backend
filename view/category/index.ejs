@@ -1,0 +1,88 @@
+<% include ../header.ejs %>
+<% include ../navbar.ejs %>
+<% include ../sidebar.ejs %>
+
+
+<div class="content-body">
+  <%if(msg!=''){%>
+
+  <div class="alert alert-success col-xs-6" id="flash_msg_dashboard"
+    style="float: right;width: 27%;margin: -79px 5px 1px;z-index: 99999999999999999999 !important;  ">
+    <h5><%= msg%></h5>
+  </div>
+  <%} %>
+  <div class="row page-titles mx-0">
+    <div class="col p-md-0">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active"><a href="javascript:void(0)">Category</a></li>
+      </ol>
+    </div>
+  </div>
+  <!-- row -->
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Categories List</h4>
+            <a href="/admin/add-category" class="btn mb-1 btn-rounded btn-outline-primary"
+              style="float: right;margin: -40px 33px 2px 1px;"><span class="ladda-label">Add Category</span><span
+                class="ladda-spinner"></span>
+              <div class="ladda-progress" style="width: 136px;"></div>
+            </a>
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered zero-configuration">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%
+                  if(response && response.length > 0){
+
+                  for( var i in response){%>
+                  <tr>
+                    <td><%=parseInt(i)+1%></td>
+                    <td><%=response[i].name%></td>
+                    <td><%=response[i].description%></td>
+                    <td><img src="<%='/upload/'+response[i].image%>" height="50px"></td>
+                    <td style="cursor: pointer;"> <% if(response[i].status ==1) { %><span
+                        class="label gradient-1 btn-rounded update_status_category"
+                        rel="<%=response[i].id %>">Active</span> <%} else {%> <span
+                        class="label gradient-2 btn-rounded update_status_category"
+                        rel="<%=response[i].id %>">Inactive</span><% } %></td>
+                    <td class="text-center btns_3">
+
+                      <a style="" href="/admin/category_view?id=<%=response[i].id%>"><i class="fa fa-eye" title="View"
+                          style="color:#2aab77;font-size: 20px"></i></a>
+                      <a style="color:#666;" href="/admin/category-edit?id=<%=response[i].id%>"><i
+                          class="fa fa-pencil color-muted m-r-5" title="Edit" style="font-size: 20px;"></i> </a>
+                      <a style="color:red;" href="#" class="category_delete" rel="<%=response[i].id%>"><i
+                          class="fa fa-close color-danger" title="Delete" style="font-size: 20px"></i></a>
+
+
+                    </td>
+                  </tr>
+
+                  <% } } %>
+
+                  </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- #/ container -->
+</div>
+
+<% include  ../footer.ejs %>

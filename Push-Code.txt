@@ -1,0 +1,29 @@
+Provider Push Code :---------------------
+
+1: favorit 
+  code: 0
+
+2: accept bid
+  code: 1  
+
+3: rating
+  code: 2
+
+4: create new order
+  code: 3
+
+
+User Push Code :---------------------
+
+5: start job
+  code : 4
+
+6: End job
+  code : 5
+
+7: bid job
+  code: 6
+
+
+
+  

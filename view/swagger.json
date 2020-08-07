@@ -1,0 +1,4156 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "MEDIA BASE URL : 3.17.254.50:4999/upload/\n\nHeader -> security_key : JHNlcnZpY2VAdmFsZXlvdUBwcm92aWRlciQ= \n\n Socket Url :  https://docs.google.com/document/d/1CEJFBiFLvaOq5uac9Hph5jB1RGSXycyk5JI76tnWHuY/edit?usp=sharing\n\n",
+    "version": "1.0.0",
+    "title": "Valeyou App"
+  },
+  "host": "3.17.254.50:4999/",
+  "basePath": "apis",
+  "tags": [
+    {
+      "name": "user",
+      "description": "All User Operations"
+    },
+    {
+      "name": "provider",
+      "description": "All Provider Operations"
+    }
+  ],
+  "paths": {
+    "/user_signup": {
+      "post": {
+        "tags": [ 
+          "user"
+        ],
+        "summary": "Create user account",
+        "operationId": "user_signup",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "Enter your first name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "description": "Enter your last name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter your email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Enter your password",
+            "required": true,
+            "type": "string"
+          },
+         
+          {
+            "name": "phone",
+            "in": "formData",
+            "description": "Enter phone",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "country_code",
+            "in": "formData",
+            "description": "Enter your country code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "in": "formData",
+            "description": "Enter your address",
+            "required": false,
+            "type": "string"
+          },
+
+          {
+            "name": "latitude",
+            "in": "formData",
+            "description": "Enter your latitude",
+            "required": false,
+            "type": "string"
+          },
+
+          {
+            "name": "longitude",
+            "in": "formData",
+            "description": "Enter your longitude",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ngo",
+            "in": "formData",
+            "description": "Enter ngo type ('1=yes' ,'0=No' )",
+            "required": true,
+            "type": "number"
+          },
+        
+          {
+            "name": "device_type",
+            "in": "formData",
+            "description": "Enter device type ('1=Android' ,'2=Ios' )",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "device_token",
+            "in": "formData",
+            "description": "Enter device token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "social_id",
+            "in": "formData",
+            "description": "Enter device social_id",
+            "required": false,
+            "type": "string"
+          }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Sign Up Successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Email Already Exist"
+          }
+        }
+      }
+    },
+    "/user_login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs user into the system",
+        "operationId": "user_login",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "The email for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "device_type",
+            "in": "formData",
+            "description": "The device type (2= Ios , 1= Android  )",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "device_token",
+            "in": "formData",
+            "description": "The device token",
+            "required": true,
+            "type": "string"
+          },
+      
+          {
+            "name": "latitude",
+            "in": "formData",
+            "description": "E.g ( 30.7046 )",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "description": "E.g ( 76.7179 )",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Log In Successfully",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Incorrect Email Or Password"
+          }
+        }
+      }
+    },
+    "/user_logout": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logout of app",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_logout",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "description": "authenticated user id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logout Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+     "/user_change_password": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user change password",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_change_password",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+           {
+            "name": "old_password",
+            "in": "formData",
+            "description": "authenticated user old password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "new_password",
+            "in": "formData",
+            "description": "authenticated user new password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Password Changes Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_forgot_password": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user forgot password",
+        "description": "This can only be done by the logged out user.",
+        "operationId": "user_forgot_password",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+           {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter your email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email sent successfully"
+          }
+        }
+      }
+    },
+    "/user_get_profile": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user get profile",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_get_profile",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+           {
+            "name": "user_id",
+            "in": "header",
+            "description": "send login user id",
+            "required": true,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile Get Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_social_login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "social account: ( if response status ==0 then hit signup api )",
+        "operationId": "social_login",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "social_id",
+            "in": "formData",
+            "description": "Enter your social id (123655)",
+            "required": true,
+            "type": "string"
+          },  {
+            "name": "social_type",
+            "in": "formData",
+            "description": "Enter your social type (1=facebook,2=google+)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "Enter your first name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "description": "Enter your last name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter your email",
+            "required": false,
+            "type": "string"
+          },
+         
+         
+          {
+            "name": "phone",
+            "in": "formData",
+            "description": "Enter phone",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "country_code",
+            "in": "formData",
+            "description": "Enter your country code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "in": "formData",
+            "description": "Enter your address",
+            "required": false,
+            "type": "string"
+          },
+
+          {
+            "name": "latitude",
+            "in": "formData",
+            "description": "Enter your latitude",
+            "required": false,
+            "type": "string"
+          },
+
+          {
+            "name": "longitude",
+            "in": "formData",
+            "description": "Enter your longitude",
+            "required": false,
+            "type": "string"
+          },
+        
+          {
+            "name": "device_type",
+            "in": "formData",
+            "description": "Enter device type ('1=Android' ,'2=Ios' )",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "device_token",
+            "in": "formData",
+            "description": "Enter device token",
+            "required": true,
+            "type": "string"
+          }
+         
+        ],
+       
+        "responses": {
+          "200": {
+            "description": "Logged In Successfully."
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Email is already linked with another account"
+          }
+        }
+      }
+    },
+    "/user_edit_profile": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user edit profile",
+        "operationId": "user_edit_profile",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "Enter your first name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "description": "Enter your last name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter your email",
+            "required": true,
+            "type": "string"
+          },
+         
+          {
+            "name": "phone",
+            "in": "formData",
+            "description": "Enter phone",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "country_code",
+            "in": "formData",
+            "description": "Enter your country code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Enter description (like about)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "description": "Enter city ",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "description": "Enter State",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "formData",
+            "description": "Enter Location",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "in": "formData",
+            "description": "Enter Latitude(30.216589)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "description": "Enter longitude(70.236598)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "age",
+            "in": "formData",
+            "description": "Enter Age",
+            "required": false,
+            "type": "number"
+          },
+
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Enter image",
+            "required": false,
+            "type": "file"
+          }
+         
+        ],
+       
+        "responses": {
+          "200": {
+            "description": "Profile Updated Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_get_categories": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user get categories",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_get_categories",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "header",
+            "description": "type(0=local jobs,1= remote)",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Categories List"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_faqs": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user get faqs",
+        "description": "This can only be done by user.",
+        "operationId": "user_faqs",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Faqs List"
+          }
+        }
+      }
+    },
+    "/user_get_sub_categories": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user get sub categories",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_get_sub_categories",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "category_id",
+            "in": "header",
+            "description": "send category id",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SubCategories  List"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/all_content": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user get all content like terms,privacy,abouts",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "all_content",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "header",
+            "description": "send type(1=term,2=privacy,3=aboutus)",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SubCategories  List"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_get_favourite_list": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user get fav list",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_get_favourite_list",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          } 
+        ],
+        "responses": {
+          "200": {
+            "description": "SubCategories  List"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_add_to_fav_list": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "provider add fav list",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_add_to_fav_list",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "provider_id",
+            "in": "formData",
+            "description": "send provider id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "status(1=fav,2=unfav)",
+            "required": true,
+            "type": "number"
+          }    
+        ],
+        "responses": {
+          "200": {
+            "description": "Provider added to favourite list"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_provider_nearme": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "provider list",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_provider_nearme",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "in": "header",
+            "description": "latitude (30.7145)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "longitude",
+            "in": "header",
+            "description": "longitude(76.7149)",
+            "required": true,
+            "type": "string"
+          },   
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit(10,20)",
+            "required": true,
+            "type": "string"
+          },    
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page(1,2)",
+            "required": true,
+            "type": "string"
+          }    
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_get_provider_detail": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user provider details",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_get_provider_detail",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          }, 
+          {
+            "name": "provider_id",
+            "in": "header",
+            "description": "send provider id",
+            "required": true,
+            "type": "string"
+          }  
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile Get Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    }, 
+    "/user_add_post": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user add post",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_add_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          }, 
+          {
+            "name": "provider_id",
+            "in": "formData",
+            "description": "if direct hire send provider id when 0",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "post title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "post description",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startTime",
+            "in": "formData",
+            "description": "post start time",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endTime",
+            "in": "formData",
+            "description": "post end time",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startPrice",
+            "in": "formData",
+            "description": "Post Start Price",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endPrice",
+            "in": "formData",
+            "description": "Post End Price",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "formData",
+            "description": "location",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "in": "formData",
+            "description": " (30.215698)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "description": " (70.215698)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "description": "State",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "zipCode",
+            "in": "formData",
+            "description": "zipCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "description": "city",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "street",
+            "in": "formData",
+            "description": "street",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "appartment",
+            "in": "formData",
+            "description": "appartment",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "formData",
+            "description": " (timestamp: 1590475074)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "time",
+            "in": "formData",
+            "description": " (timestamp: 1590475074)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "selected_data",
+            "in": "formData",
+            "description": "( Model -> ArrayOfCatSub  )",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "formData",
+            "description": "(1=>now,2=>today,3=>future)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "images",
+            "required": false,
+            "allowMultiple": true,
+            "type": "file"
+          }
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Post Added Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_post_details": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user post details",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_post_details",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          }, 
+          {
+            "name": "post_id",
+            "in": "header",
+            "description": "send post id",
+            "required": true,
+            "type": "string"
+          }  
+        ],
+        "responses": {
+          "200": {
+            "description": "Post Details"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_job_list": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user provider details",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_job_list",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page(1,2)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit(10,20,30)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type(4=complete,3=ongoing,2 canceled,1= upcoming 0=all)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "My post listing"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_add_card": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user add card details",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_add_card",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          }, 
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "enter name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "card_number",
+            "in": "formData",
+            "description": "enter card number",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "expiry_year",
+            "in": "formData",
+            "description": "enter expire year",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "expiry_month",
+            "in": "formData",
+            "description": "enter expire month",
+            "required": true,
+            "type": "string"
+          }            
+        ],
+        "responses": {
+          "200": {
+            "description": "Card Added Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_get_card": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user cards list",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_get_card",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          }
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "My post listing"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_get_notifications": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": " user notification",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_get_notifications",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "My Notifications List"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_read_notification": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "User Read Notification",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_read_notification",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "header",
+            "description": "Type(0=all read,1=single)",
+            "required": true,
+            "type": "string"
+          },
+
+          {
+            "name": "notification_id",
+            "in": "header",
+            "description": "Notification Id",
+            "required": false,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_rate_provider": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user rating ",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_rate_user",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userTo",
+            "in": "formData",
+            "description": "provider id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "ratings",
+            "in": "formData",
+            "description": "ratings",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "description",
+            "required": false,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Rating Submit Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_accept_reject_bid": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user accept reject ",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_accept_reject_bid",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "formData",
+            "description": "(1=accept,2=reject)",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "post_id",
+            "in": "formData",
+            "description": "post_id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "provider_id",
+            "in": "formData",
+            "description": "provider_id",
+            "required": true,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Request Accepted"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_upload_post_images": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user post images ",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_upload_post_images",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "images",
+            "in": "formData",
+            "description": "enter images",
+            "required": true,
+            "type": "file"
+          }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "upload successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_dispute": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user  dispute ",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_dispute",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "orderId",
+            "in": "formData",
+            "description": "enter order id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "enter title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "enter description",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "enter image",
+            "required": false,
+            "type": "file"
+          }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Dispute Send  Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_filter_search": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user filter search",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_filter_search",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "category_id",
+            "in": "header",
+            "description": "category id (E.G: 1,2,3)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "rating",
+            "in": "header",
+            "description": "rating ",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "distance",
+            "in": "header",
+            "description": "Distance",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "state",
+            "in": "header",
+            "description": "State",
+            "required": false,
+            "type": "string"
+          }, {
+            "name": "total_jobs",
+            "in": "header",
+            "description": "Total jobs",
+            "required": false,
+            "type": "number"
+          }
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/user_account_setting": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user Account setting like delete deactivate",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "user_account_setting",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "header",
+            "description": "type(0=deactivate,1=delete)",
+            "required": false,
+            "type": "string"
+          }
+       
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "Account Delete Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_signup": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "Create provider account",
+        "operationId": "provider_signup",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "Enter your first name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "description": "Enter your last name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter your email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Enter your password",
+            "required": true,
+            "type": "string"
+          },
+         
+          {
+            "name": "phone",
+            "in": "formData",
+            "description": "Enter phone",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "country_code",
+            "in": "formData",
+            "description": "Enter your country code",
+            "required": true,
+            "type": "string"
+          },
+          
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Enter your description",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "in": "formData",
+            "description": "Enter your address",
+            "required": true,
+            "type": "string"
+          },
+
+          {
+            "name": "latitude",
+            "in": "formData",
+            "description": " (30.215698)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "description": " (70.215698)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "age",
+            "in": "formData",
+            "description": "Enter your age",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "social_security_no",
+            "in": "formData",
+            "description": "Enter your security number",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "selected_data",
+            "in": "formData",
+            "description": "( Model -> ArrayOfCatSub  )",
+            "required": true,
+            "type": "string"
+          },
+        
+          {
+            "name": "device_type",
+            "in": "formData",
+            "description": "Enter device type ('1=Android' ,'2=Ios' )",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "device_token",
+            "in": "formData",
+            "description": "Enter device token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "social_id",
+            "in": "formData",
+            "description": "Enter device social_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "driver_license",
+            "in": "formData",
+            "description": "Enter licence image",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Enter  image",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "paypal_id",
+            "in": "formData",
+            "description": "Enter  paypal id",
+            "required": false,
+            "type": "string"
+          }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Sign Up Successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Email is already linked with another account"
+          }
+        }
+      }
+    },
+    "/provider_login": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "Logs provider into the system",
+        "operationId": "provider_login",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "The email for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "device_type",
+            "in": "formData",
+            "description": "The device type (2= Ios , 1= Android  )",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "device_token",
+            "in": "formData",
+            "description": "The device token",
+            "required": true,
+            "type": "string"
+          },
+      
+          {
+            "name": "latitude",
+            "in": "formData",
+            "description": "E.g ( 30.7046 )",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "description": "E.g ( 76.7179 )",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Log In Successfully",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Incorrect Email Or Password"
+          }
+        }
+      }
+    },
+    "/provider_logout": {
+      "put": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "Logout of app",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_logout",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "provider_id",
+            "in": "header",
+            "description": "authenticated provider id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logout Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_change_password": {
+      "put": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider change password",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_change_password",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+           {
+            "name": "old_password",
+            "in": "formData",
+            "description": "authenticated provider old password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "new_password",
+            "in": "formData",
+            "description": "authenticated provider new password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Password Changes Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_forgot_password": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "user forgot password",
+        "description": "This can only be done by the logged out provider.",
+        "operationId": "provider_forgot_password",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+           {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter your email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email sent successfully"
+          }
+        }
+      }
+    },
+    "/provider_social_login": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "social account: ( if response status ==0 then hit signup api )",
+        "operationId": "provider_social_login",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "social_id",
+            "in": "formData",
+            "description": "Enter your social id (123655)",
+            "required": true,
+            "type": "string"
+          },  {
+            "name": "social_type",
+            "in": "formData",
+            "description": "Enter your social type (1=facebook,2=google+)",
+            "required": true,
+            "type": "string"
+          },
+         
+          {
+            "name": "device_type",
+            "in": "formData",
+            "description": "Enter device type ('1=Android' ,'2=Ios' )",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "device_token",
+            "in": "formData",
+            "description": "Enter device token",
+            "required": true,
+            "type": "string"
+          }
+         
+        ],
+       
+        "responses": {
+          "200": {
+            "description": "Logged In Successfully."
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Email is already linked with another account"
+          }
+        }
+      }
+    },
+    "/provider_my_jobs": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  all order list",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_my_jobs",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page(1,2)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit(10,20,30)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "order status(send default 0=all,2=cancelled,3=ongoing,4=complete 5=schedule)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order Listing "
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_map_list": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider order list",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_map_list",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page(1,2)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit(10,20,30)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Home Listing Data"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_availibility": {
+      "put": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider online offline",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_availibility",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "formData",
+            "description": "type(0=offline,1=online)",
+            "required": false,
+            "type": "number"
+          }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Online successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_job_details": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider order details",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_job_details",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "post_id",
+            "in": "header",
+            "description": "post id",
+            "required": false,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Job Details"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_get_profile": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  details",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_get_profile",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "provider_id",
+            "in": "header",
+            "description": "provider id",
+            "required": false,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile get successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_edit_profile": {
+      "put": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider edit profile",
+        "operationId": "provider_edit_profile",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "Enter your first name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "description": "Enter your last name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter your email",
+            "required": false,
+            "type": "string"
+          },
+         
+          {
+            "name": "phone",
+            "in": "formData",
+            "description": "Enter phone",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "country_code",
+            "in": "formData",
+            "description": "Enter your country code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Enter description (like about)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "selected_data",
+            "in": "formData",
+            "description": "Enter selected_data ",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Enter image",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "businessLicence",
+            "in": "formData",
+            "description": "Enter businessLicence",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "insurance",
+            "in": "formData",
+            "description": "Enter insurance",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "resume",
+            "in": "formData",
+            "description": "Enter resume",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "driverLicence",
+            "in": "formData",
+            "description": "Enter driverLicence",
+            "required": false,
+            "type": "file"
+          }
+         
+        ],
+       
+        "responses": {
+          "200": {
+            "description": "Profile Updated Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_all_content": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider get all content like terms,privacy,abouts",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_all_content",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "type",
+            "in": "header",
+            "description": "send type(1=term,2=privacy,3=aboutus)",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Content"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_place_bid": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  order bid ",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_place_bid",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "post_id",
+            "in": "formData",
+            "description": "post id",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "price",
+            "required": false,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Bid Added Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_update_bid": {
+      "put": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  update bid ",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_update_bid",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "post_id",
+            "in": "formData",
+            "description": "post id",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "price",
+            "required": false,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Bid updated Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_my_reviews": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  details",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_my_reviews",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "My Reviews"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_rate_user": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  Rating ",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_rate_user",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userTo",
+            "in": "formData",
+            "description": "user id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "ratings",
+            "in": "formData",
+            "description": "ratings",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "description",
+            "required": false,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Rating Submit Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_get_categories": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  category",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_get_categories",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "header",
+            "description": "type (0=local jobs ,1=Remote jobs)",
+            "required": false,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Categories List"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_job_history": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider details",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_job_history",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page(1,2)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit(10,20,30)",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "My post listing"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_notifications": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider notification",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_notifications",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "My Notifications List"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_start_job": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider start job",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_start_job",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "job_id",
+            "in": "formData",
+            "description": "job id (post id)",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "(3=start job,4 complete)",
+            "required": true,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Job Started"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_add_portfolio": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider portfolio",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_add_portfolio",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Description",
+            "required": true,
+            "type": "string"
+          }, {
+            "name": "image",
+            "in": "formData",
+            "description": "image",
+            "required": false,
+            "type": "file"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Portfolio Added Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_edit_portfolio": {
+      "put": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider edit portfolio",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_edit_portfolio",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "portfolio_id",
+            "in": "formData",
+            "description": "portfolio id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Description",
+            "required": false,
+            "type": "string"
+          }, {
+            "name": "image",
+            "in": "formData",
+            "description": "image",
+            "required": false,
+            "type": "file"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Portfolio Edit Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_delete_portfolio": {
+      "delete": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider delete portfolio",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_delete_portfolio",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "portfolio_id",
+            "in": "formData",
+            "description": "portfolio id",
+            "required": true,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Portfolio Delete Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_get_portfolio": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  portfolio",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_get_portfolio",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+
+
+
+    "/provider_add_identity": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider identity",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_add_identity",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+           {
+            "name": "image",
+            "in": "formData",
+            "description": "image",
+            "required": true,
+            "type": "file"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Identity Added Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_edit_identity": {
+      "put": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider edit Identity",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_edit_identity",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "identity_id",
+            "in": "formData",
+            "description": "Identity id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "image",
+            "required": false,
+            "type": "file"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Identity Edit Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_delete_identity": {
+      "delete": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider delete identity",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_delete_identity",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "identity_id",
+            "in": "formData",
+            "description": "identity  id",
+            "required": true,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Identity Delete Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_get_identity": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  identity",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_get_identity",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+
+
+
+
+
+
+
+    "/provider_add_language": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider language",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_add_language",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "formData",
+            "description": "Type",
+            "required": false,
+            "type": "string"
+          }
+        
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Language Added Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          },
+           "409": {
+            "description": "This language already exist"
+          }
+        }
+      }
+    },
+    "/provider_edit_language": {
+      "put": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider edit language",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_edit_language",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "lang_id",
+            "in": "formData",
+            "description": "language id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "formData",
+            "description": "Type",
+            "required": false,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Language Edit Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          },
+          "409": {
+            "description": "This language already exist"
+          }
+        }
+      }
+    },
+    "/provider_delete_language": {
+      "delete": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider delete language",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_delete_language",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "lang_id",
+            "in": "formData",
+            "description": "Language id",
+            "required": true,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Language Delete Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_get_language": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  language",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_get_language",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_add_business_hours": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider business hours",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_add_business_hours",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "formData",
+            "description": "(  Model -> ArrayOfBusinessHours )",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "formData",
+            "description": "Type(0=new,1=edit)",
+            "required": false,
+            "type": "string"
+          }
+        
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_get_business_hours": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  business hours",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_get_business_hours",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_add_certificate": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider certificate",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_add_certificate",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Description",
+            "required": true,
+            "type": "string"
+          }, {
+            "name": "image",
+            "in": "formData",
+            "description": "image",
+            "required": false,
+            "type": "file"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Certificate Added Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_edit_certificate": {
+      "put": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider edit certificate",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_edit_certificate",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "certificate_id",
+            "in": "formData",
+            "description": "certificate id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Description",
+            "required": false,
+            "type": "string"
+          }, {
+            "name": "image",
+            "in": "formData",
+            "description": "image",
+            "required": false,
+            "type": "file"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Certificate Edit Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_delete_certificate": {
+      "delete": {
+        "tags": [
+          "provider"
+        ],
+        "summary": " provider delete certificate",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_delete_certificate",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "certificate_id",
+            "in": "formData",
+            "description": "certificate id",
+            "required": true,
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Certificate Delete Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_get_certificate": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider  certificate",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_get_certificate",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_read_notification": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider read notification",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_read_notification",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "header",
+            "description": "Type(0=all read,1=single)",
+            "required": true,
+            "type": "string"
+          },
+
+          {
+            "name": "notification_id",
+            "in": "header",
+            "description": "Notification Id",
+            "required": false,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_filter_search": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider filter",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_filter_search",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "category_id",
+            "in": "header",
+            "description": "category id (eg: 1,2,3)",
+            "required": false,
+            "type": "string"
+          },
+
+          {
+            "name": "distance",
+            "in": "header",
+            "description": "Distance(Eg:10)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "header",
+            "description": "State(eg: punjab)",
+            "required": false,
+            "type": "string"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    }, 
+    "/provider_add_to_fav_list": {
+      "post": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "user add fav list",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_add_to_fav_list",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "formData",
+            "description": "send user id",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "status(1=fav,2=unfav)",
+            "required": true,
+            "type": "number"
+          }    
+        ],
+        "responses": {
+          "200": {
+            "description": "User added to favourite list"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    }, 
+    "/provider_get_favourite_list": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider get fav list",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_get_favourite_list",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+         
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          } 
+        ],
+        "responses": {
+          "200": {
+            "description": "Favourite List"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    },
+    "/provider_account_setting": {
+      "get": {
+        "tags": [
+          "provider"
+        ],
+        "summary": "provider Account setting like delete deactivate",
+        "description": "This can only be done by the logged in provider.",
+        "operationId": "provider_account_setting",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_key",
+            "in": "header",
+            "description": "auth_key of logged in user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "header",
+            "description": "type(0=deactivate,1=delete)",
+            "required": false,
+            "type": "string"
+          }
+       
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "Account Delete Successfully"
+          },
+          "401": {
+            "description": "Invalid Authorization Key"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "security_key"
+    }
+  },
+  "definitions": {
+    "ArrayOfCatSub": {
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "number",
+          "description": "category_id"
+        },
+        "subcategory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ArrayOfSubCatItems"
+          }
+        }
+      }
+    },   
+    "ArrayOfBusinessHours": {
+      "type": "array",
+      "description": "",
+        "items":{
+          "$ref": "#/definitions/ArrayOfHours"
+        }
+        },
+    
+    
+    "ArrayOfSubCatItems": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "id"
+        },
+        "price": {
+          "type": "string",
+          "description": "price"
+        }
+      }
+    },
+    "ArrayOfHours": {
+      "type": "object",
+      "properties": {
+        "day": {
+          "type": "string",
+          "description": "day"
+        },
+        "fromTime": {
+          "type": "string",
+          "description": "fromTime"
+        },
+        "toTime": {
+          "type": "string",
+          "description": "toTime"
+        }
+      }
+    }
+  },
+  "schemes": [
+    "http"
+  ]
+}

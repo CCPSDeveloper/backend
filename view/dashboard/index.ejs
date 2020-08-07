@@ -1,0 +1,229 @@
+<% include ../header.ejs %>
+<% include ../navbar.ejs %>
+<% include ../sidebar.ejs %>
+<!--**********************************
+
+            Content body start
+        ***********************************-->
+
+<style type="text/css">
+    @import 'https://code.highcharts.com/css/highcharts.css';
+
+    #container {
+        height: 400px;
+        max-width: 800px;
+        min-width: 320px;
+        margin: 0 auto;
+    }
+
+    .highcharts-pie-series .highcharts-point {
+        stroke: #EDE;
+        stroke-width: 2px;
+    }
+
+    .highcharts-pie-series .highcharts-data-label-connector {
+        stroke: silver;
+        stroke-dasharray: 2, 2;
+        stroke-width: 2px;
+    }
+
+    .highcharts-contextbutton {
+        display: none !important;
+    }
+
+    .highcharts-title {
+        display: none !important;
+    }
+    .gradient-1, .dropdown-mega-menu .ext-link.link-1 a, .morris-hover, .datamaps-hoverover {
+    background-image: linear-gradient(230deg, #4AC1EE, #5f97ad);
+}
+.gradient-2, .dropdown-mega-menu .ext-link.link-3 a {
+    background-image: linear-gradient(230deg, #4b5588, #a2fbca);
+}
+.gradient-6 {
+    background-image: linear-gradient(135deg, #2ba723 10%, #129772 100%);
+}
+.fa {
+    color: #fff !important;
+  
+}
+text.highcharts-credits {
+    display: none;
+}
+  
+</style>
+<div class="content-body">
+    <%if(msg!=''){%>
+    <div class="alert alert-success col-xs-6" id="flash_msg_dashboard"
+        style="float: right;width: 27%;margin: -79px 5px 1px;z-index: 99999999999999999999 !important; display: none; ">
+        <h5><%= msg%></h5>
+    </div>
+    <%} %>
+    <div class="container-fluid mt-3">
+        <div class="row">
+
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <a href="/admin/users">
+                    <div class="card gradient-1">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Total Users</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white"><%=response.user%></h2>
+
+                            </div>
+                            <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <a href="/admin/category">
+                    <div class="card gradient-2">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Total Categories</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white"><%=response.category%></h2>
+
+                            </div>
+                            <span class="float-right display-5 opacity-5"><i class="fa fa-list"></i></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <a href="/admin/provider">
+                    <div class="card gradient-3">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Total Providers</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white"><%= response.provider%></h2>
+
+                            </div>
+                            <span class="float-right display-5 opacity-5"><i class="fa fa-paragraph"></i></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <a href="/admin/invoice">
+                    <div class="card gradient-4">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Total Invoices</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white"><%= response.total_count_Ocount%></h2>
+
+                            </div>
+                            <span class="float-right display-5 opacity-5"><i class="fa fa-bell"></i></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <a href="/admin/subcategory">
+                    <div class="card gradient-5">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Total Subcategories</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white"><%= response.get_subcatcpunt%></h2>
+
+                            </div>
+                            <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <a href="/admin/invoice">
+                    <div class="card gradient-6">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Total Admin Earning</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white"><%= response.admin_fees%></h2>
+
+                            </div>
+                            <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="container"></div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <canvas id="canvas"></canvas>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-- #/ container -->
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
+<% include ../footer.ejs %>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js">
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            method: 'get',
+            url: '/admin/get_count',
+            success: function (data) {
+            console.log(data,"data==========");
+                Highcharts.chart('container', {
+
+                    chart: {
+                        styledMode: true
+                    },
+
+                    title: {
+                        text: 'All Counts'
+                    },
+
+                    xAxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    },
+
+                    series: [{
+                        type: 'pie',
+                        allowPointSelect: true,
+                        keys: ['name', 'y', 'selected', 'sliced'],
+                        data: [
+                            ['Total Order', data.order, false],
+                            ['Accept Order', data.accept_count, false],
+                            ['Pending Order', data.pending_order, false],
+                            ['Progress Order', data.processing_count, false],
+                            ['Complete Order', data.complete_count, false],
+                            // ['Total Users', data.user, false],
+                            // ['Total Categories', data.category, false],
+                            // ['Total Providers', data.provider, true, true],
+                            // ['Total Requests', data.request, false]
+                        ],
+                        showInLegend: true
+                    }]
+                });
+
+            }
+        });
+
+    });
+
+</script>

@@ -1,0 +1,21 @@
+
+@media only screen and (max-width: 736px) {
+.google img {
+    width: 100%!important;
+}
+.hero-info ul li span {
+    min-width: 100%!important;   margin-bottom: 1rem;
+}
+.container {
+    max-width: 100%;
+}
+}
+
+@media only screen and (max-width: 414px) {
+.google img {
+    width: 100%!important;
+}
+.col-lg-2.hero img {
+    width: 100%!important;
+}
+}

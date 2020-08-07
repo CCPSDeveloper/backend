@@ -1,0 +1,97 @@
+<% include ../header.ejs %>
+ <% include ../navbar.ejs %>
+  <% include ../sidebar.ejs %>
+
+
+ <div class="content-body">
+   <%if(msg!=''){%>
+             <div class="alert alert-success col-xs-6" id="flash_msg_dashboard" style="float: right;width: 27%;margin: -79px 5px 1px;z-index: 99999999999999999999 !important;  "><h5><%= msg%></h5></div>
+  <%} %>
+             <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                          <div class="card">
+                            <div class="card-body">
+                       <form action="/admin/setting-edit" method="post" id="step-form-horizontal" class="step-form-horizontal">
+                            <div>
+                                <h4>Admin Details</h4>
+                                <section>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label> Admin Comission(%)</label>
+                                                <input type="number" name="comission" class="form-control" placeholder="Admin Comission" value="<%=response.dataValues.comission%>" >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label> Tax(%)</label>
+                                                <input type="number" name="tax" class="form-control" value="<%= response.dataValues.tax %>" placeholder="Tax" >
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-lg-6">
+                                            <div class="form-group">
+                                                 <label>  Email</label>
+                                                <input type="text" name="paypal_email" class="form-control" placeholder="Paypal Email" value="<%=response.dataValues.paypalEmail %>" >
+                                            </div>
+                                        </div>
+
+                                         <div class="col-lg-6">
+                                            <div class="form-group">
+                                                 <label>  Password</label>
+                                                <input type="text" name="password" class="form-control" placeholder="Paypal password" value="<%=response.dataValues.password %>" >
+                                            </div>
+                                        </div> -->
+
+                                         <!-- <div class="col-lg-6">
+                                            <div class="form-group">
+                                                 <label> Account Number</label>
+                                                <input type="text" name="account_number" class="form-control" placeholder=" Account Number" value="<%=response.dataValues.accountNumber %>" >
+                                            </div>
+                                        </div>
+
+                                         <div class="col-lg-6">
+                                            <div class="form-group">
+                                                 <label> Bank Name</label>
+                                                <input type="text" name="bank_name" class="form-control" placeholder="Bank Name" value="<%=response.dataValues.bankName %>" >
+                                            </div> -->
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                     <label> Search Distance(KM)</label>
+                                                    <input type="text" name="search_distance" class="form-control" placeholder="Search Distance" value="<%=response.dataValues.searchDistance %>" >
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                      
+
+
+                                    </div>
+                                </section>
+                                <div class="text-left">
+                                            <button type="submit"  class="btn btn-primary">Send </button>
+                                            <a href="/admin/dashboard" class="btn btn-danger">Back </a>
+                                        </div>
+                    </div>
+
+                </form>
+                 </div>
+            </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+    </div>
+
+            <% include  ../footer.ejs %>

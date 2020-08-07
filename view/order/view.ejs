@@ -1,0 +1,199 @@
+  <% include ../header.ejs %>
+  <% include ../navbar.ejs %>
+  <% include ../sidebar.ejs %>
+ <style type="text/css">
+.tble_set .col-md-6 {
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+.tble_set .table td, .table th {
+    border-color: #f3f3f3;
+    width: 50%;
+}
+.table-responsive{
+    overflow-x: hidden !important;
+}
+</style>
+  <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="/admin/orders">Order</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+                <div class="row">
+
+ <div class="col-lg-12">
+     <h4 class="card-title">Order View</h4>
+                        <div class="card">
+                            <div class="card-body">
+                               
+                                <div class="table-responsive tble_set">
+                                      <div class="row">
+                                    <div class="col-md-6">
+                                    <table class="table header-border">
+                                       
+                                        <tbody>
+                                              <h5 class="card-title">User Details</h5>
+                                            <tr>
+                                                <th>Name</th>
+                                                <td><%=response.user.name%></td>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <th>Email</th>
+                                                <td><%=response.user.email%></td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th>Image</th>
+                                               
+                                                <td><img src="<%= '/upload/'+response.user.image%>" class="img-rounded" alt="image" value="" width="80" height="80"></td>
+                                                
+                                            </tr>
+                                        </tbody>
+                                         </table>
+                                     </div>
+                                      <div class="col-md-6">
+                                      <table class="table header-border">
+                                        <tbody>
+                                         <h5 class="card-title">Provider Details</h5>
+                                         <% if(response.provider) { %>
+                                            <tr>
+                                                <th>Name</th>
+                                                <td><%=(response.provider) ? response.provider.firstName + ' ' + response.provider.lastName : ''%></td>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <th>Email</th>
+                                                <td><%=(response.provider) ? response.provider.email : ''%></td>
+                                              
+                                            </tr>
+
+                                             <tr>
+                                                <th>Phone</th>
+                                                <td><%=(response.provider) ? response.provider.phone : ''%></td>
+                                              
+                                            </tr>
+
+                                            <tr>
+                                                <th>Image</th>
+                                               
+                                                <td>
+                                               
+                                                    <img src="<%= (response.provider) ? '/upload/'+response.provider.image : ''%>" class="img-rounded" alt="image" value="" width="80" height="80"></td>
+                                                
+                                            </tr>
+                                            <% } else { %>
+
+                                               <h3>Provider Not assign Yet</h3>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                
+                                </div>
+                            </div>
+                            <br>
+                              <div class="row">
+                                    <div class="col-md-12">
+                                      <table class="table header-border">
+                                        <tbody>
+                                         <h5 class="card-title">Order Details</h5>
+                                            <tr>
+                                                <th>Description</th>
+                                                <td><%=(response.description) ? response.description : ''%></td>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <th>Date</th>
+                                                <%
+                                                var myDate =new Date(response.date*1000);
+                                                %>
+                                     <td><%=myDate.toLocaleString();%></td>
+                                              
+                                            </tr>
+                                            <tr>
+                                                <th>Location</th>
+                                                <td><%=response.location%></td>
+                                               
+                                            </tr>
+
+                                             <tr>
+                                                <th>Order Type</th>
+                                                <td><% if (response.type == 1) { %>Now<% }else if (response.type == 2) { %> Today <% } else  { %> Future <% } %></td>
+                                              
+                                            </tr>
+                                            <tr>
+                                                <th>Job Type</th>
+                                                <td><% if (response.type == 1) { %>Local<% } else  { %> Remote <% } %></td>
+                                              
+                                            </tr>
+                                            <tr>
+                                                <th>Order Status</th>
+                                                <td><% if(response.status == 0) { %> <span>Pending</span> <% } if(response.status == 1) { %><span>Accepted</span> <% } if(response.status == 2) { %><span>Decline</span> <% } if(response.status == 3) { %><span>Progress</span> <% } if(response.status == 4) { %><span>Complete</span> <% }  %></td>
+                                              
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <hr>
+                                    <h5 class="card-title"> Order Categories </h5>
+                                    <hr>
+                                     <% 
+                                     var ok =1;
+                                     if(response.orderCategories.length > 0) {
+                                     for( var i in response.orderCategories ) { %>
+                                        
+                                         <ol>
+                                             <li style="color: #0a1744;font-size: 21px;font-weight: 800;"><span><b><%= ok;%> : </b></span><%=response.orderCategories[i].category.name%></li>
+                                        <% for(var j in response.orderCategories[i].subCategory){ %>
+                                         <div style="padding: 4px 3px 2px 33px;color: #4ac1ee;">
+                                             <ul>
+                                                <li> <span><b>- </b> </span><%=(response.orderCategories[i].subCategory[j].subCategory)? response.orderCategories[i].subCategory[j].subCategory.name : 'N/A' %></li>
+                                             </ul>
+                                            </div> 
+                                             <% } %>
+                                         </ol>
+                                        
+                                         
+                                         <% ok ++; }  } else {  %>
+ 
+                                             <span> Category Not Available</span>
+                                             <% } %>
+
+                                             <hr>
+                                             <h5 class="card-title">Order Images </h5>
+                                             <div class="row">
+                                             <% if(response.orderImages.length > 0) { 
+                                                 for(var k in  response.orderImages){ 
+                                                %>
+                                                
+                                                <div class="col-md-3">
+                                                    <a href="/upload/<%=response.orderImages[k].images%>" target="_BLANK"><img src ="/upload/<%=response.orderImages[k].images%>" width="150px" class="img-rounded" alt="order-image"></a>
+                                                </div>
+
+                                            <% } } else { %>
+                                                <p class="card-title" style="padding: 0 0 0 14px;">Order Images Not Available</p>
+
+                                            <% } %>
+                                             </div>
+                                            
+                                </div>
+                               
+                                <!-- end row div -->
+                            </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% include ../footer.ejs %>
